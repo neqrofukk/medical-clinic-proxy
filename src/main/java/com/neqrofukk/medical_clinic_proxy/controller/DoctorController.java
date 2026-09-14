@@ -1,0 +1,7 @@
+package com.neqrofukk.medical_clinic_proxy.controller;
+
+public class DoctorController {
+    // jako doctor:
+    // Możliwość zobaczenia wszystkich swoich wizyt -> przeszlych terazniejszych wszystkich
+    // Chcialbym miec mozliwosc zrezygnowania z wizyty -> tzn. ktos jest zapisany ale wtedy nie moge wiec chce taka wizyte moc odwolac
+}
