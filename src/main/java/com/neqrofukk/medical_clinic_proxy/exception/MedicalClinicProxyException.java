@@ -1,4 +1,14 @@
 package com.neqrofukk.medical_clinic_proxy.exception;
 
-public class MedicalClinicProxyException {
+import lombok.Getter;
+import org.springframework.http.HttpStatus;
+
+@Getter
+public class MedicalClinicProxyException extends RuntimeException {
+    private final HttpStatus status;
+
+    protected MedicalClinicProxyException(String message, HttpStatus status) {
+        super(message);
+        this.status = status;
+    }
 }
