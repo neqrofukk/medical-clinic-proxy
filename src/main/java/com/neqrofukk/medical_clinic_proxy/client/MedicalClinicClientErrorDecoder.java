@@ -20,6 +20,8 @@ public class MedicalClinicClientErrorDecoder implements ErrorDecoder {
             case SERVICE_UNAVAILABLE -> new RetryableException(status.value(), feignException.getMessage(), response.request().httpMethod(), feignException, (Long) null, response.request());
             default -> feignException;
         };
+
+//        TODO
 //
 //        if (response.status() == 404) {
 //            if (methodKey.contains("getClinic")) {
