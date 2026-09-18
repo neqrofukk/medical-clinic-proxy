@@ -19,7 +19,7 @@ import java.util.Set;
 public interface MedicalClinicClient {
 
     // Ja jako pacjent chciałbym miec możliwość:
-    //Zobaczenia wszystkich swoich wizyt
+    // Zobaczenia wszystkich swoich wizyt
     @GetMapping("/patients/{patientId}/visits")
     Set<VisitDto> findAllPatientVisits(@PathVariable Long patientId);
 
@@ -47,6 +47,5 @@ public interface MedicalClinicClient {
     // Chcialbym miec mozliwosc zrezygnowania z wizyty -> tzn. ktos jest zapisany ale wtedy nie moge wiec chce taka wizyte moc odwolac
     @DeleteMapping("/visits/{visitId}/patient")
     VisitDto cancelVisit(@PathVariable Long visitId);
-
 
 }

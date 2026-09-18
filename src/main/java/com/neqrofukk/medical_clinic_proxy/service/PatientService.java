@@ -18,6 +18,11 @@ public class PatientService {
     private final MedicalClinicClient client;
 
     // Jako pacjent:
+    //Zobaczenia wszystkich swoich wizyt
+    public Set<VisitDto> findAllPatientVisits(Long patientId) {
+        return client.findAllPatientVisits(patientId);
+    };
+
     // Możliwość zapisania się na wizytę
     public VisitDto bookVisit(Long visitId, Long patientId) {
         return client.bookVisit(visitId, patientId);
