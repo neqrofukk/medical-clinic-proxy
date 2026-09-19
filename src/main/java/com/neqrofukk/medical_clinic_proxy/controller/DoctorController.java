@@ -13,7 +13,7 @@ import java.util.Set;
 public class DoctorController {
     private final DoctorService doctorService;
 
-    @GetMapping("/doctors/{doctorId}/visits")
+    @GetMapping("/{doctorId}/visits")
     Set<VisitDto> getAllDoctorVisits(@PathVariable Long doctorId) {
         return doctorService.getAllDoctorVisits(doctorId);
     }

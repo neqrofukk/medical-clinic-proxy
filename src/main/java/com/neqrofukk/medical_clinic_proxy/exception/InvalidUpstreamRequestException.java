@@ -4,6 +4,6 @@ import org.springframework.http.HttpStatus;
 
 public class InvalidUpstreamRequestException extends MedicalClinicProxyException {
     public InvalidUpstreamRequestException(String message) {
-        super(message, HttpStatus.NOT_FOUND);
+        super(message, HttpStatus.BAD_REQUEST);
     }
 }

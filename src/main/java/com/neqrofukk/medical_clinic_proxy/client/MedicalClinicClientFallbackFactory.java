@@ -23,34 +23,46 @@ public class MedicalClinicClientFallbackFactory implements FallbackFactory<Medic
         return new MedicalClinicClient() {
             @Override
             public Set<VisitDto> findAllPatientVisits(Long patientId) {
+                rethrowIfMCP(cause);
                 return Set.of();
             }
 
             @Override
             public VisitDto bookVisit(Long visitId, Long patientId) {
+                rethrowIfMCP(cause);
                 throw new MedicalClinicProxyException("Medical clinic service unavailable", HttpStatus.SERVICE_UNAVAILABLE);
             }
 
             @Override
             public Set<VisitDto> findAllDoctorVisits(Long doctorId, Boolean available) {
+                rethrowIfMCP(cause);
                 return Set.of();
             }
 
             @Override
             public PageResponse<VisitDto> getVisits(String specialty, LocalDateTime startTime, LocalDateTime endTime, Pageable pageable) {
+                rethrowIfMCP(cause);
                 return PageResponse.empty();
             }
 
             @Override
             public PageResponse<DoctorDto> getDoctors(String specialty, Pageable pageable) {
+                rethrowIfMCP(cause);
                 return PageResponse.empty();
             }
 
             @Override
             public VisitDto cancelVisit(Long visitId) {
+                rethrowIfMCP(cause);
                 throw new MedicalClinicProxyException("Medical clinic service unavailable", HttpStatus.SERVICE_UNAVAILABLE);
             }
         };
+    }
+
+    private void rethrowIfMCP(Throwable cause) {
+        if (cause instanceof MedicalClinicProxyException mcp) {
+            throw mcp;
+        }
     }
 
 }
