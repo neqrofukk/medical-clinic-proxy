@@ -14,7 +14,7 @@ public class DoctorController {
     private final DoctorService doctorService;
 
     @GetMapping("/doctors/{doctorId}/visits")
-    Set<VisitDto> getAllDoctorVisits(@PathVariable Long doctorId, @RequestParam Boolean available) {
+    Set<VisitDto> getAllDoctorVisits(@PathVariable Long doctorId) {
         return doctorService.getAllDoctorVisits(doctorId);
     }
 
