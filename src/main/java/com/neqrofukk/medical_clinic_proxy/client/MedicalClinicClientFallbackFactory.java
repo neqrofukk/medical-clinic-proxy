@@ -15,7 +15,7 @@ import java.util.Set;
 
 @Component
 @Slf4j
-public class MedicalClinicFallbackFactory implements FallbackFactory<MedicalClinicClient> {
+public class MedicalClinicClientFallbackFactory implements FallbackFactory<MedicalClinicClient> {
 
     @Override
     public MedicalClinicClient create(Throwable cause) {

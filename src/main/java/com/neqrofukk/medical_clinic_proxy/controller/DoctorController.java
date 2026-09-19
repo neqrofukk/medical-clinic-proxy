@@ -13,16 +13,14 @@ import java.util.Set;
 public class DoctorController {
     private final DoctorService doctorService;
 
-    // jako doctor:
-    // Możliwość zobaczenia wszystkich swoich wizyt -> przeszlych terazniejszych wszystkich
     @GetMapping("/doctors/{doctorId}/visits")
     Set<VisitDto> getAllDoctorVisits(@PathVariable Long doctorId, @RequestParam Boolean available) {
         return doctorService.getAllDoctorVisits(doctorId);
-    };
+    }
 
-    // Chcialbym miec mozliwosc zrezygnowania z wizyty -> tzn. ktos jest zapisany ale wtedy nie moge wiec chce taka wizyte moc odwolac
     @DeleteMapping("/visits/{visitId}/patient")
     VisitDto cancelVisit(@PathVariable Long visitId) {
         return doctorService.cancelVisit(visitId);
-    };
+    }
+
 }

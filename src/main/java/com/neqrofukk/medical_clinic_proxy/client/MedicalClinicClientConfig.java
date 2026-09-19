@@ -7,8 +7,12 @@ import org.springframework.context.annotation.Bean;
 public class MedicalClinicClientConfig {
 
     @Bean
-    public ErrorDecoder decoder() { return new MedicalClinicClientErrorDecoder(); }
+    public ErrorDecoder decoder() {
+        return new MedicalClinicClientErrorDecoder();
+    }
 
     @Bean
-    public Retryer retryer() { return new Retryer.Default(100, 1000, 3); }
+    public Retryer retryer() {
+        return new Retryer.Default(100, 1000, 3);
+    }
 }

@@ -1,6 +1,7 @@
 package com.neqrofukk.medical_clinic_proxy.client;
 
 import com.neqrofukk.medical_clinic_proxy.exception.InvalidUpstreamRequestException;
+import com.neqrofukk.medical_clinic_proxy.exception.MedicalClinicProxyException;
 import com.neqrofukk.medical_clinic_proxy.exception.ResourceNotFoundException;
 import feign.FeignException;
 import feign.Response;
@@ -17,27 +18,9 @@ public class MedicalClinicClientErrorDecoder implements ErrorDecoder {
         return switch (status) {
             case BAD_REQUEST -> new InvalidUpstreamRequestException("Invalid request: " + feignException.contentUTF8());
             case NOT_FOUND -> new ResourceNotFoundException("Resource not found: " + feignException.contentUTF8());
+            case CONFLICT -> new MedicalClinicProxyException("Conflict: " + feignException.contentUTF8(), HttpStatus.CONFLICT);
             case SERVICE_UNAVAILABLE -> new RetryableException(status.value(), feignException.getMessage(), response.request().httpMethod(), feignException, (Long) null, response.request());
             default -> feignException;
         };
-
-//        TODO
-//
-//        if (response.status() == 404) {
-//            if (methodKey.contains("getClinic")) {
-//                return new ClinicNotFoundException();
-//            }
-//
-//            if (methodKey.contains("getDoctor")) {
-//                return new DoctorNotFoundException();
-//            }
-//        }
-//
-//        if (response.status() == 409) {
-//            return new VisitAlreadyTakenException();
-//        }
-//
-//        return defaultDecoder.decode(methodKey, response);
     }
-
 }

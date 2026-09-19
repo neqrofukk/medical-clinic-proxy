@@ -13,13 +13,10 @@ public class DoctorService {
 
     private final MedicalClinicClient client;
 
-    // jako doctor:
-    // Możliwość zobaczenia wszystkich swoich wizyt -> przeszlych terazniejszych wszystkich
     public Set<VisitDto> getAllDoctorVisits(Long doctorId) {
         return client.findAllDoctorVisits(doctorId, false);
     }
 
-    // Chcialbym miec mozliwosc zrezygnowania z wizyty -> tzn. ktos jest zapisany ale wtedy nie moge wiec chce taka wizyte moc odwolac
     public VisitDto cancelVisit(Long visitId) {
         return client.cancelVisit(visitId);
     }

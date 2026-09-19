@@ -1,6 +1,7 @@
 package com.neqrofukk.medical_clinic_proxy.exception.handler;
 
 import com.neqrofukk.medical_clinic_proxy.exception.InvalidUpstreamRequestException;
+import com.neqrofukk.medical_clinic_proxy.exception.MedicalClinicProxyException;
 import com.neqrofukk.medical_clinic_proxy.exception.ResourceNotFoundException;
 import feign.FeignException;
 import feign.RetryableException;
@@ -24,6 +25,12 @@ public class GlobalExceptionHandler {
                 HttpStatusCode.valueOf(ex.status()),
                 ex.contentUTF8()
         );
+    }
+
+    @ExceptionHandler(MedicalClinicProxyException.class)
+    public ProblemDetail handleMedicalClinicProxyException(MedicalClinicProxyException ex) {
+        log.warn("Handled Medical Clinic Proxy exception: status = {}, message = {}", ex.getStatus().value(), ex.getMessage());
+        return ProblemDetail.forStatusAndDetail(ex.getStatus(), ex.getMessage());
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
