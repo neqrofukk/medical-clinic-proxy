@@ -34,7 +34,7 @@ public class PatientController {
     }
 
     @GetMapping("/visits")
-    public PageResponse<VisitDto> getVisits(@RequestParam String specialty, @RequestParam LocalDateTime startTime, @RequestParam LocalDateTime endTime, @RequestParam Pageable pageable) {
+    public PageResponse<VisitDto> getVisits(@RequestParam String specialty, @RequestParam LocalDateTime startTime, @RequestParam LocalDateTime endTime, @PageableDefault(sort = "startTime") Pageable pageable) {
         return patientService.getVisits(specialty, startTime, endTime, pageable);
     }
 
